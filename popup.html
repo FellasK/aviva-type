@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvivaType</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <h1>AvivaType</h1>
+            <button id="theme-toggle" aria-label="Toggle Theme" class="icon-btn">🌙</button>
+        </header>
+
+        <main>
+            <!-- Sound On/Off -->
+            <div class="control-row">
+                <label class="switch">
+                    <input type="checkbox" id="sound-toggle" aria-label="Toggle sound">
+                    <span class="slider"></span>
+                </label>
+                <span id="status-label">Sound On</span>
+            </div>
+
+            <!-- Volume -->
+            <div class="control-col">
+                <div class="label-row">
+                    <span class="label-text">Volume</span>
+                    <span id="volume-value" class="label-value">50%</span>
+                </div>
+                <input type="range" id="volume-slider" min="0" max="100" value="50" aria-label="Volume">
+            </div>
+
+            <!-- Sound Theme -->
+            <div class="control-col">
+                <span class="label-text">Sound theme</span>
+                <div class="theme-pills" role="group" aria-label="Sound theme">
+                    <button class="pill active" data-theme="default">Default</button>
+                    <button class="pill" data-theme="distinct">Distinct</button>
+                    <button class="pill" data-theme="custom">Custom ✦</button>
+                </div>
+            </div>
+
+            <!-- Custom theme editor — animated via CSS Grid trick -->
+            <div class="editor-wrapper" id="editor-wrapper">
+                <div class="editor-inner">
+                    <div class="custom-editor">
+
+                        <!-- Presets -->
+                        <div class="presets-row">
+                            <div class="presets-left">
+                                <span class="label-text">Presets</span>
+                                <div class="preset-chips" id="preset-chips"></div>
+                            </div>
+                            <button id="preset-save-btn" class="preset-save-btn">Save</button>
+                        </div>
+
+                        <!-- Preset name input (animated) -->
+                        <div class="preset-name-wrapper" id="preset-name-wrapper">
+                            <div class="preset-name-inner">
+                                <input type="text" id="preset-name-input" class="preset-input"
+                                    placeholder="Name this preset…" maxlength="18" autocomplete="off"
+                                    spellcheck="false">
+                                <button id="preset-name-confirm" class="preset-confirm-btn">↵</button>
+                            </div>
+                        </div>
+
+                        <div class="editor-sep"></div>
+
+                        <!-- Waveform -->
+                        <div class="control-col">
+                            <span class="label-text">Waveform</span>
+                            <div class="wave-pills" id="wave-pills" role="group" aria-label="Waveform">
+                                <button class="pill pill--sm active" data-wave="sine">Sine</button>
+                                <button class="pill pill--sm" data-wave="square">Square</button>
+                                <button class="pill pill--sm" data-wave="triangle">Triangle</button>
+                                <button class="pill pill--sm" data-wave="sawtooth">Saw</button>
+                                <button class="pill pill--sm" data-wave="noise">Noise</button>
+                            </div>
+                        </div>
+
+                        <!-- Sliders -->
+                        <div class="control-col">
+                            <div class="label-row">
+                                <span class="label-text">Pitch</span>
+                                <span id="pitch-value" class="label-value">440 Hz</span>
+                            </div>
+                            <input type="range" id="pitch-slider" min="80" max="1200" value="440" aria-label="Pitch">
+                        </div>
+                        <div class="control-col">
+                            <div class="label-row">
+                                <span class="label-text">Decay</span>
+                                <span id="decay-value" class="label-value">150 ms</span>
+                            </div>
+                            <input type="range" id="decay-slider" min="30" max="500" value="150" aria-label="Decay">
+                        </div>
+                        <div class="control-col">
+                            <div class="label-row">
+                                <span class="label-text">Brightness</span>
+                                <span id="brightness-value" class="label-value">2000 Hz</span>
+                            </div>
+                            <input type="range" id="brightness-slider" min="200" max="8000" value="2000"
+                                aria-label="Brightness">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview zone -->
+            <div class="test-zone">
+                <div class="test-zone-top">
+                    <input type="text" id="test-input" class="test-input" placeholder="type here to preview…"
+                        autocomplete="off" spellcheck="false" aria-label="Type to preview custom sound">
+                    <span class="test-dot" id="test-dot"></span>
+                </div>
+            </div>
+
+            <!-- Ignore special keys row -->
+            <div class="ignore-row">
+                <label class="switch switch--small">
+                    <input type="checkbox" id="ignore-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+                <span class="ignore-text">Ignore special keys</span>
+                <button id="keys-edit-btn" class="keys-edit-btn" aria-label="Open keyboard editor">
+                    Keys ↗
+                </button>
+            </div>
+
+            <!-- Site block -->
+            <div class="site-block-row" id="site-block-row">
+                <span class="site-block-label">
+                    Muted on <span id="current-site" class="site-name">—</span>
+                </span>
+                <label class="switch switch--small">
+                    <input type="checkbox" id="site-toggle" aria-label="Toggle sound on this site">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </main>
+
+        <footer>
+            <p>by <a href="https://github.com/FellasK" target="_blank" rel="noopener">FellasK</a></p>
+        </footer>
+
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+/* ============================================================
+   AvivaType — keyboard.css (standalone keyboard popup)
+   ============================================================ */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f5;
+  --border: #e4e4e7;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --accent: #735cdd;
+  --accent-dim: #ede9fb;
+  --kb-body: #d6d6d9;
+  --kb-key: #f0f0f2;
+  --kb-key-border: #c0c0c6;
+  --kb-key-shadow: #b0b0b6;
+  --kb-key-text: #18181b;
+}
+
+[data-theme="dark"] {
+  --bg: #18181b;
+  --surface: #27272a;
+  --border: #3f3f46;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --accent: #9b87f5;
+  --accent-dim: #2d2550;
+  --kb-body: #111113;
+  --kb-key: #2a2a2e;
+  --kb-key-border: #404048;
+  --kb-key-shadow: #0a0a0c;
+  --kb-key-text: #d4d4d8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  width: 760px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ── Wrapper ── */
+.kp-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px 14px;
+}
+
+/* ── Header ── */
+.kp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kp-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.kp-name {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.kp-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kp-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.kp-hint strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Keyboard body ── */
+.keyboard-body {
+  background: var(--kb-body);
+  border-radius: 10px;
+  padding: 11px 11px 13px;
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Rows ── */
+.kb-row {
+  display: flex;
+  gap: 4px;
+  align-items: stretch;
+}
+
+/* ── Individual key ── */
+.key {
+  /* flex set inline per key width */
+  height: 36px;
+  border-radius: 5px;
+  border: 1px solid var(--kb-key-border);
+  background: var(--kb-key);
+  color: var(--kb-key-text);
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow:
+    0 2px 0 var(--kb-key-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition:
+    background 0.1s ease,
+    color 0.1s ease,
+    border-color 0.1s ease,
+    box-shadow 0.1s ease,
+    transform 0.08s ease;
+}
+
+.key:hover {
+  filter: brightness(1.08);
+  color: var(--text);
+}
+
+.key:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--kb-key-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Active = key is silenced (highlighted) */
+.key.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--accent) 40%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+/* Spacer between key groups (fn row gaps) */
+.kb-spacer {
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+
+/* Fn row keys are slightly shorter */
+.fn-row .key {
+  height: 28px;
+  font-size: 9.5px;
+}
+
+/* Wide space bar */
+.key.key-space {
+  font-size: 0;
+  /* hide empty label */
+}
+
+/* ── Footer ── */
+.kp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kp-count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.kp-reset-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 4px 11px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.kp-reset-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}

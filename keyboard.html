@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AvivaType - Keys</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="keyboard.css">
+</head>
+
+<body>
+    <div class="kp-wrap">
+        <header class="kp-header">
+            <div class="kp-title">
+                <span class="kp-name">AvivaType</span>
+                <span class="kp-sub">Special Keys</span>
+            </div>
+            <p class="kp-hint">Highlighted keys are <strong>silenced</strong>. Click to toggle.</p>
+        </header>
+
+        <div class="keyboard-body">
+            <div class="keyboard" id="keyboard"></div>
+        </div>
+
+        <footer class="kp-footer">
+            <span id="kp-count" class="kp-count"></span>
+            <button id="kp-reset" class="kp-reset-btn">Reset to defaults</button>
+        </footer>
+    </div>
+    <script src="keyboard.js"></script>
+</body>
+
+</html>
