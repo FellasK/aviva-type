@@ -235,9 +235,9 @@ function handleKeyDown(event) {
 }
 
 function addListener(el) {
-  if (el.dataset.avivaSoundAttached) return;
+  if (el.dataset.avivaTypeAttached) return;
   el.addEventListener('keydown', handleKeyDown);
-  el.dataset.avivaSoundAttached = 'true';
+  el.dataset.avivaTypeAttached = 'true';
 }
 
 function init() {
